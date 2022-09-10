@@ -1,5 +1,4 @@
-#include "COne.hpp"
-#include "CTwo.hpp"
+#include "CThree.hpp"
 
 auto main() -> int {
     puts("---COne---");
@@ -18,6 +17,13 @@ auto main() -> int {
     other_two = two;
     other_two.print();
     two.print();
+
+    puts("---CThree---");
+    CThree three{other_two, 22};  // NOLINT
+    three.print();
+    CThree other_three{std::move(three)};
+    other_three.print();
+    three.print();
 
     return 0;
 }
