@@ -3,6 +3,11 @@
 
 auto example9() noexcept -> void {
     DynamicArray<int> arr{5};  // NOLINT
+    try {
+        arr.at(5) = 12;  // NOLINT
+    } catch (const std::exception &exc) {
+        std::cout << "Поймано исключение: " << exc.what() << '\n';
+    }
 
     puts("arr input_elems():");
     arr.input_elems();

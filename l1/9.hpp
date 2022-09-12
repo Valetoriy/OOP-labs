@@ -2,6 +2,7 @@
 #define TASK_9_HPP
 
 #include <iostream>
+#include <cstring>
 
 template <typename Contained>
 struct DynamicArray {
@@ -79,6 +80,11 @@ struct DynamicArray {
         return m_capacity;
     }
 
+    [[nodiscard]] constexpr auto at(const size_t ind) const -> auto & {
+        if (ind >= m_capacity)
+            throw std::out_of_range{"Индекс вне диапазона массива!"};
+        return m_data[ind];
+    }
     [[nodiscard]] constexpr auto operator[](const size_t &ind) const noexcept
         -> auto & {
         return m_data[ind];
@@ -146,8 +152,5 @@ struct DynamicArray {
     size_t m_size{};
     size_t m_capacity{};
 };
-
-template <typename Elem1, typename... Elems>
-DynamicArray(Elem1, Elems...) -> DynamicArray<Elem1>;
 
 #endif
