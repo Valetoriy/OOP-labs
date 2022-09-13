@@ -26,9 +26,10 @@ struct Complex {
                 imag * other.real + real * other.imag};
     }
 
-    [[nodiscard]] constexpr auto operator/(const Complex &other) const noexcept
+    [[nodiscard]] constexpr auto operator/(const Complex &other) const
         -> Complex {
         Contained denom{other.real * other.real + other.imag * other.imag};
+        if (denom == 0) throw std::domain_error{"Знаменатель равен нулю!"};
 
         Contained temp_r{(real * other.real + imag * other.imag) / denom};
         Contained temp_i{(imag * other.real - real * other.imag) / denom};

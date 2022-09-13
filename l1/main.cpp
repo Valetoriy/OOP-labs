@@ -47,11 +47,19 @@ auto example15() noexcept -> void {
     puts("(1 + 2i) / (3 + 4i):");
     com3 = com / com2;
     com3.print();
+
+    com = {};
+    com2 = {};
+    try {
+        com3 = com / com2;
+    } catch (const std::exception &exc) {
+        std::cout << "Поймано исключение: " << exc.what() << '\n';
+    }
 }
 
 auto main() -> int {
-    example9();
-    // example15();
+    // example9();
+    example15();
 
     return 0;
 }
